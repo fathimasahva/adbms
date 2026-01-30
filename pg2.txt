@@ -1,0 +1,68 @@
+
+
+5. Create an INVOICE database and having following tables.
+Customer(id, name, address, city, ph_no)
+Product(pid, pname, price (default 0))
+Invoice_master(inv_id, cust_id(FK), inv_date)
+Invoice_item(inv_id (FK), pid(FK), quantity)
+
+
+
+mysql>CREATE TABLE customer (cust_id INT PRIMARY KEY,name VARCHAR(100), address VARCHAR(30),city VARCHAR(20),phn_no VARCHAR(15));
+Query OK, 0 rows affected (0.45 sec)
+
+
+
+CREATE TABLE product(p_id INT PRIMARY KEY,pname VARCHAR(100),price INT DEFAULT'0');
+Query OK, 0 rows affected (0.63 sec)
+
+
+mysql> CREATE TABLE invoice_master(inv_id INT PRIMARY KEY,cust_id INT,FOREIGN KEY(cust_id) REFERENCES customer(cust_id),inv_date date);
+Query OK, 0 rows affected (2.47 sec)
+
+mysql> CREATE TABLE invoice_item(inv_id INT ,FOREIGN KEY(inv_id) REFERENCES invoice_master(inv_id),p_id INT,FOREIGN KEY(p_id) REFERENCES product(p_id),quantity
+INT);
+Query OK, 0 rows affected (1.14 sec)
+
+mysql> desc customer;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| cust_id | int         | NO   | PRI | NULL    |       |
+| address | varchar(30) | YES  |     | NULL    |       |
+| city    | varchar(20) | YES  |     | NULL    |       |
+| phn_no  | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> desc product;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| p_id  | int         | NO   | PRI | NULL    |       |
+| pname | varchar(30) | YES  |     | NULL    |       |
+| price | int         | YES  |     | 0       |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+
+mysql> desc invoice_master;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| inv_id   | int  | NO   | PRI | NULL    |       |
+| cust_id  | int  | YES  | MUL | NULL    |       |
+| inv_date | date | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> desc invoice_item;
++----------+------+------+-----+---------+-------+
+| Field    | Type | Null | Key | Default | Extra |
++----------+------+------+-----+---------+-------+
+| inv_id   | int  | YES  | MUL | NULL    |       |
+| p_id     | int  | YES  | MUL | NULL    |       |
+| quantity | int  | YES  |     | NULL    |       |
++----------+------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
