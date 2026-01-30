@@ -1,0 +1,93 @@
+
+1. Create a table EMPLOYEE have the following fields (emp_id, name,city,dob,adhar_no) 
+
+
+
+mysql> CREATE TABLE EMPLOYEE(emp_id INT ,name VARCHAR(20),city CHAR(35),dob date,adhar_no INT);
+Query OK, 0 rows affected (0.52 sec)
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | char(35)    | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+2. Create a table STUDENT have the fields(roll_no, name, age, address, gender)and add
+following constraints on it.
+Roll_no – Primary key
+Name – does not allow null values
+Age- must be in between (0-99), does not allow null values
+Gender- default value is ‘m’ 
+
+
+
+mysql> CREATE TABLE STUDENT(roll_no int, name varchar(20),age INT check(age between 0 and 99),address varchar(20),gender char(1) default'm');
+Query OK, 0 rows affected (0.78 sec)
+
+
+mysql> desc STUDENT;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| age     | int         | NO   |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
+| gender  | char(1)     | YES  |     | m       |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+3. Create a temporary table STUDENT1 of STUDENT relation. 
+ 
+ 
+ mysql> CREATE TEMPORARY TABLE STUDENT1 SELECT * FROM STUDENT;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc STUDENT1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | YES  |     | NULL    | NULL  |
+| name    | varchar(20) | YES  |     | NULL    | NULL  |
+| age     | int         | YES  |     | NULL    | NULL  |
+| address | varchar(20) | YES  |     | NULL    | NULL  |
+| gender  | char(1)     | YES  |     | m       | NULL  |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+4. Create a duplicate table of EMPLOYEE. 
+
+mysql> CREATE TABLE IF NOT EXISTS EMPLOYEE1 SELECT * FROM EMPLOYEE;
+Query OK, 0 rows affected (0.84 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE1;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | char(35)    | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+
