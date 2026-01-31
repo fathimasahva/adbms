@@ -1,0 +1,123 @@
+
+1. Add a column ‘SSN’ at the first position in the table EMPLOYEE 
+
+mysql> ALTER TABLE EMPLOYEE ADD SSN INT FIRST;
+Query OK, 0 rows affected (1.87 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int         | YES  |     | NULL    |       |
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | char(35)    | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+
+ 2. Change the data type of the column ‘DOB’ in year the table EMPLOYEE 
+
+
+
+mysql> ALTER TABLE EMPLOYEE MODIFY DOB YEAR;
+Query OK, 0 rows affected (2.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int         | YES  |     | NULL    |       |
+| emp_id   | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | char(35)    | YES  |     | NULL    |       |
+| DOB      | year        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+
+3. Delete the column ‘emp_id’ the table EMPLOYEE. 
+
+mysql> ALTER TABLE EMPLOYEE DROP emp_id;
+Query OK, 0 rows affected (1.91 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int         | YES  |     | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | char(35)    | YES  |     | NULL    |       |
+| DOB      | year        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+ 4. Add the constraint unique for columns ‘SSN, ‘adhar_no’ the table EMPLOYEE 
+
+
+mysql> ALTER TABLE EMPLOYEE ADD CONSTRAINT c5 UNIQUE(SSN),ADD CONSTRAINT c6 UNIQUE(adhar_no);
+Query OK, 0 rows affected, 1 warning (0.82 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc EMPLOYEE;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int         | YES  | UNI | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | char(35)    | YES  |     | NULL    |       |
+| DOB      | year        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+ 5. Delete the NULL constraint of ‘age’ in the STUDENT table. 
+
+
+mysql> ALTER TABLE STUDENT MODIFY age int;
+Query OK, 0 rows affected (1.69 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC STUDENT;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   |     | NULL    |       |
+| name    | varchar(20) | NO   |     | NULL    |       |
+| age     | int         | YES  |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
+| gender  | char(1)     | YES  |     | m       |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+6.Change the table name EMPLOYEE as PERSON 
+
+mysql> ALTER TABLE EMPLOYEE RENAME TO PERSON;
+Query OK, 0 rows affected (0.69 sec)
+
+mysql> DESC PERSON;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| SSN      | int         | YES  | UNI | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| city     | char(35)    | YES  |     | NULL    |       |
+| DOB      | year        | YES  |     | NULL    |       |
+| adhar_no | int         | YES  | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+ 7. Delete the table PERSON.
+
+mysql> DROP TABLE PERSON;
+Query OK, 0 rows affected (0.42 sec)
+
