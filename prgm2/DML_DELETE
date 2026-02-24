@@ -102,6 +102,17 @@ Empty set (0.00 sec)
 mysql> DELETE FROM invoice_item WHERE inv_id IN (SELECT inv_id FROM invoice_master WHERE cust_id = ( SELECT cust_id FROM customer WHERE name = 'nafla') );
 Query OK, 0 rows affected (0.00 sec)
 
+mysql> select * from customer;
++---------+--------+----------------+------------+------------+
+| cust_id | name   | address        | city       | phn_no     |
++---------+--------+----------------+------------+------------+
+|       1 | sahva  | vadakke ochath | kozhikode  | 9539211388 |
+|       2 | naira  | andhroth       | malappuram | 1234567891 |
+|       3 | sinu   | kunnamangalam  | tvm        | 5263879462 |
+|       4 | aswani | kandoth        | tvm        | 7542369821 |
+|       5 | nafla  | vaishyan       | wayanad    | 5421368794 |
++---------+--------+----------------+------------+------------+
+5 rows in set (0.00 sec)
 
 mysql> select * from invoice_item;
 +--------+------+----------+
@@ -140,17 +151,7 @@ mysql> select * from invoice_master;
 mysql> DELETE FROM invoice_item LIMIT 2;
 Query OK, 2 rows affected (0.12 sec)
 
-mysql> select * from customer;
-+---------+--------+----------------+------------+------------+
-| cust_id | name   | address        | city       | phn_no     |
-+---------+--------+----------------+------------+------------+
-|       1 | sahva  | vadakke ochath | kozhikode  | 9539211388 |
-|       2 | naira  | andhroth       | malappuram | 1234567891 |
-|       3 | sinu   | kunnamangalam  | tvm        | 5263879462 |
-|       4 | aswani | kandoth        | tvm        | 7542369821 |
-|       5 | nafla  | vaishyan       | wayanad    | 5421368794 |
-+---------+--------+----------------+------------+------------+
-5 rows in set (0.00 sec)
+
 
 mysql> select * from invoice_item;
 +--------+------+----------+
