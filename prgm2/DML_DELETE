@@ -99,9 +99,25 @@ Empty set (0.00 sec)
 
  6. Delete Invoice details of a particular customer "nafla".
 
-mysql> DELETE FROM invoice_master WHERE cust_id = (     SELECT cust_id
- FROM customer     WHERE name = 'nafla' );
-Query OK, 1 row affected (0.10 sec)
+mysql> DELETE FROM invoice_item WHERE inv_id IN (SELECT inv_id FROM invoice_master WHERE cust_id = ( SELECT cust_id FROM customer WHERE name = 'nafla') );
+Query OK, 0 rows affected (0.00 sec)
+
+
+mysql> select * from invoice_item;
++--------+------+----------+
+| inv_id | p_id | quantity |
++--------+------+----------+
+|    100 |    1 |        2 |
+|    102 |    5 |        3 |
+|    108 |    6 |        4 |
+|    108 |    3 |        2 |
+|    101 |    3 |        7 |
+|    109 |    4 |        2 |
+|    110 |    6 |        3 |
++--------+------+----------+
+7 rows in set (0.00 sec)
+
+mysql> 
 
 mysql> select * from invoice_master;
 +--------+---------+------------+
