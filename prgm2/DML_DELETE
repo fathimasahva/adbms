@@ -5,6 +5,9 @@ C) DML-DELETE
 mysql> DELETE FROM invoice_item WHERE inv_id = 110;
 Query OK, 1 row affected (0.10 sec)
 
+mysql> DELETE FROM invoice_master WHERE cust_id = 7;
+Query OK, 1 row affected (0.10 sec)
+
 mysql> DELETE FROM customer WHERE cust_id = 7;
 Query OK, 1 row affected (0.10 sec)
 
