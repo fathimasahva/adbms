@@ -2,6 +2,9 @@ C) DML-DELETE
 
 1. Delete the record of customer id ‘7’. 
 
+mysql> DELETE FROM invoice_item WHERE inv_id = 110;
+Query OK, 1 row affected (0.10 sec)
+
 mysql> DELETE FROM customer WHERE cust_id = 7;
 Query OK, 1 row affected (0.10 sec)
 
@@ -39,7 +42,6 @@ mysql> select * from invoice_item;
 |    108 |    3 |        2 |
 |    101 |    3 |        7 |
 |    109 |    4 |        2 |
-|    110 |    6 |        3 |
 +--------+------+----------+
 11 rows in set (0.00 sec)
 
@@ -65,7 +67,6 @@ mysql> select * from invoice_item;
 |    108 |    3 |        2 |
 |    101 |    3 |        7 |
 |    109 |    4 |        2 |
-|    110 |    6 |        3 |
 +--------+------+----------+
 9 rows in set (0.00 sec)
 
@@ -130,7 +131,6 @@ mysql> select * from invoice_item;
 |    108 |    3 |        2 |
 |    101 |    3 |        7 |
 |    109 |    4 |        2 |
-|    110 |    6 |        3 |
 +--------+------+----------+
 7 rows in set (0.00 sec)
 
@@ -147,7 +147,6 @@ mysql> select * from invoice_master;
 |    104 |       1 | 2025-03-22 |
 |    108 |       2 | 2025-09-23 |
 |    109 |       1 | 2025-02-14 |
-|    110 |       3 | 2025-09-25 |
 +--------+---------+------------+
 8 rows in set (0.00 sec)
 
@@ -169,7 +168,6 @@ mysql> select * from invoice_item;
 |    108 |    3 |        2 |
 |    101 |    3 |        7 |
 |    109 |    4 |        2 |
-|    110 |    6 |        3 |
 +--------+------+----------+
 7 rows in set (0.00 sec)
 
