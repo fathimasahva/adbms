@@ -46,7 +46,10 @@ mysql> select * from invoice_item;
 
  3. Delete the purchase details of product ‘pen’ in the inv_id ‘101’. 
 
-mysql> DELETE FROM invoice_item WHERE inv_id = 108   AND p_id = (SELECT p_id FROM product WHERE pname = 'calculator');
+mysql> DELETE FROM invoice_item WHERE inv_id = 108 ;
+Query OK, 1 row affected (0.09 sec)
+
+mysql>DELETE FROM customer where cust_id=5;
 Query OK, 1 row affected (0.09 sec)
 
 
@@ -68,7 +71,7 @@ mysql> select * from invoice_item;
 
  4. Delete details of customer who does not have phone number. 
  
- mysql> DELETE FROM invoice_master WHERE cust_id IN (SELECT cust_id FROM customer WHERE phn_no IS NULL );
+ mysql> DELETE FROM invoice_master WHERE inv_id=102 
 Query OK, 1 row affected (0.13 sec)
 
 mysql> DELETE FROM customer WHERE phn_no IS NULL;
@@ -99,7 +102,10 @@ Empty set (0.00 sec)
 
  6. Delete Invoice details of a particular customer "nafla".
 
-mysql> DELETE FROM invoice_item WHERE inv_id IN (SELECT inv_id FROM invoice_master WHERE cust_id = ( SELECT cust_id FROM customer WHERE name = 'nafla') );
+mysql>DELETE FROM invoice_item WHERE inv_id=105;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>DELETE FROM invoice_master WHERE inv_id=105;
 Query OK, 0 rows affected (0.00 sec)
 
 mysql> select * from customer;
