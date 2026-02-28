@@ -1,0 +1,26 @@
+
+1. Find the minimum, maximum, and average price of products.
+
+mysql> select min(price),max(price),avg(price) from product;
++------------+------------+------------+
+| min(price) | max(price) | avg(price) |
++------------+------------+------------+
+|       2.04 |     210.12 |  80.142857 |
++------------+------------+------------+
+1 row in set (0.00 sec)
+
+
+
+
+2. Find the number of customers in each city, and only include cities with more than 2 customers.
+
+mysql> select city,count(*) from customer group by city having count(*) >1;
++------+----------+
+| city | count(*) |
++------+----------+
+| tvm  |        2 |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> 
+
