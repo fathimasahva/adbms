@@ -14,7 +14,7 @@ mysql> select min(price),max(price),avg(price) from product;
 
 2. Find the number of customers in each city, and only include cities with more than 2 customers.
 
-mysql> select city,count(*) from customer group by city having count(*) >1;
+mysql> select city,count(*) from customer group by city having count(*) >= 1;
 +------+----------+
 | city | count(*) |
 +------+----------+
