@@ -1,0 +1,61 @@
+1. List all invoice items, avoid duplicates.    
+
+
+mysql> select distinct inv_id from invoice_item;
++--------+
+| inv_id |
++--------+
+|    100 |
+|    101 |
+|    102 |
+|    108 |
+|    109 |
+|    110 |
++--------+
+6 rows in set (0.00 sec)
+
+2. List the customer details who not live in ‘tvm’.
+
+mysql> select * from customer where city !='tvm';
++---------+-------+----------------+------------+------------+
+| cust_id | name  | address        | city       | phn_no     |
++---------+-------+----------------+------------+------------+
+|       1 | sahva | vadakke ochath | kozhikode  | 9539211388 |
+|       2 | naira | andhroth       | malappuram | 1234567891 |
+|       5 | nafla | vaishyan       | wayanad    | 5421368794 |
++---------+-------+----------------+------------+------------+
+3 rows in set (0.00 sec)
+
+
+3. Display the customer details sorted in ascending by city and descending by names.
+
+mysql> select * from customer order by city asc,name desc;
++---------+--------+----------------+------------+------------+
+| cust_id | name   | address        | city       | phn_no     |
++---------+--------+----------------+------------+------------+
+|       1 | sahva  | vadakke ochath | kozhikode  | 9539211388 |
+|       2 | naira  | andhroth       | malappuram | 1234567891 |
+|       3 | sinu   | kunnamangalam  | tvm        | 5263879462 |
+|       4 | aswani | kandoth        | tvm        | 7542369821 |
+|       5 | nafla  | vaishyan       | wayanad    | 5421368794 |
++---------+--------+----------------+------------+------------+
+5 rows in set (0.00 sec)
+
+
+4. Find the customer names who have ‘e’ or ‘a’ in them and at least 3 characters in length.
+
+mysql> select name from customer WHERE (name LIKE '%a%' OR name LIKE '%e%'
+) AND name LIKE '___%';
++--------+
+| name   |
++--------+
+| sahva  |
+| naira  |
+| aswani |
+| nafla  |
++--------+
+4 rows in set (0.00 sec)
+
+
+
+
