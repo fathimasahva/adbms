@@ -1,0 +1,34 @@
+1.list the product names,only include those purchased quantity more      than 3
+
+mysql> SELECT pname from product where p_id in(select p_id from invoice_item where quantity>3);
++----------+
+| pname    |
++----------+
+| lipstick |
+| eraser   |
++----------+
+2 rows in set (0.04 sec)
+
+
+2.find the product that has no sale
+
+mysql> select pname from product where p_id not in(select p_id from invoice_item);
++--------+
+| pname  |
++--------+
+| pensil |
+| scale  |
++--------+
+2 rows in set (0.01 sec)
+
+
+mysql> select name from customer where cust_id in(select cust_id from invoice_master where inv_id in(select inv_id from invoice_item group by inv_id having count(p_id)>=2));
++-------+
+| name  |
++-------+
+| naira |
++-------+
+1 row in set (0.02 sec)
+
+mysql> 
+
