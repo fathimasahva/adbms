@@ -1,21 +1,20 @@
 1.Create a view for customers who have purchased products.
 
 
-mysql> CREATE VIEW p_custs AS SELECT DISTINCT customer.cust_id, customer.name FROM customer JOIN invoice_master ON customer.cust_id = invoice_master.cust_id JOIN invoice_item ON invoice_master.inv_id = invoice_item.inv_id;
+mysql> CREATE VIEW p_cust AS SELECT DISTINCT customer.cust_id, customer.name FROM customer JOIN invoice_master ON customer.cust_id = invoice_master.cust_id;
 
 Query OK, 0 rows affected (0.13 sec)
 
-mysql> select * from p_custs;
+mysql> select * from p_cust;
 +---------+--------+
 | cust_id | name   |
 +---------+--------+
 |       1 | sahva  |
+|       2 | naira  |
 |       3 | sinu   |
 |       4 | aswani |
-|       2 | naira  |
 +---------+--------+
-4 rows in set (0.01 sec)
-
+4 rows in set (0.00 sec)
 
 
 
