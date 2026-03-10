@@ -1,0 +1,51 @@
+1. List the product name and quantity of invoice items. 
+
+
+
+mysql> select product.pname,invoice_item.quantity from product natural join invoice_item;
++------------+----------+
+| pname      | quantity |
++------------+----------+
+| notebook   |        2 |
+| calculator |        3 |
+| eraser     |        4 |
+| lipstick   |        2 |
+| lipstick   |        7 |
+| libalm     |        2 |
+| eraser     |        3 |
++------------+----------+
+7 rows in set (0.01 sec)
+
+
+2.. Display the customer name, product name, invoice date of purchased item ‘eraser’. 
+
+mysql> SELECT customer.name, product.pname, invoice_master.inv_date FROM customer JOIN invoice_master ON customer.cust_id = invoice_master.cust_id JOIN invoice_item ON invoice_master.inv_id = invoice_item.inv_id JOIN product ON invoice_item.p_id = product.p_id WHERE product.pname = 'eraser';
++-------+--------+------------+
+| name  | pname  | inv_date   |
++-------+--------+------------+
+| naira | eraser | 2025-09-23 |
+| sinu  | eraser | 2025-09-25 |
++-------+--------+------------+
+2 rows in set (0.00 sec)
+
+3. Display all customer details and invoice details must include customer has not purchased items.
+
+
+mysql> select customer.cust_id,customer.name,invoice_master.inv_id from customer left outer join invoice_master on customer.cust_id=invoice_master.cus
+t_id;
++---------+--------+--------+
+| cust_id | name   | inv_id |
++---------+--------+--------+
+|       1 | sahva  |    100 |
+|       1 | sahva  |    104 |
+|       1 | sahva  |    109 |
+|       2 | naira  |    108 |
+|       3 | sinu   |    101 |
+|       3 | sinu   |    103 |
+|       3 | sinu   |    110 |
+|       4 | aswani |    102 |
+|       5 | nafla  |   NULL |
++---------+--------+--------+
+9 rows in set (0.00 sec)
+
+
