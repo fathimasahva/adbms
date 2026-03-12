@@ -1,0 +1,18 @@
+mysql> create trigger trg
+    -> before insert on product
+    -> for each row
+    -> begin
+    -> if new.price < 5 then
+    -> set new.price =10;
+    -> end if;
+    -> end$$
+Query OK, 0 rows affected (0.17 sec)
+
+mysql> select * from product where pname='pen';$$
++------+-------+-------+
+| p_id | pname | price |
++------+-------+-------+
+|    8 | pen   | 10.00 |
++------+-------+-------+
+1 row in set (0.00 sec)
+
