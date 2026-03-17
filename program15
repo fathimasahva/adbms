@@ -1,0 +1,90 @@
+1. Write a MongoDB query to display the customer documents having city ‘ekm’,’tvm’. 
+
+
+INVOICE> db.CUSTOMER.find({$or:[{city:"ekm"},{city:"tvm"}]});
+[
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b047'),
+    name: 'anu',
+    age: 22,
+    city: 'tvm',
+
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b04a'),
+    name: 'vidhu',
+    age: 22,
+    city: 'ekm',
+
+  }
+]
+
+
+
+ 2. Write a MongoDB query to display all product documents their price >50. 
+ 
+ INVOICE> db.product.find();
+[
+  {
+    _id: ObjectId('69b7abe0ee1b6e231d89b04b'),
+    pname: 'chair',
+    price: 200
+  },
+  { _id: ObjectId('69b7abe0ee1b6e231d89b04c'), pname: 'pen', price: 5 },
+  {
+    _id: ObjectId('69b7abe0ee1b6e231d89b04d'),
+    pname: 'soap',
+    price: 45
+  },
+  {
+    _id: ObjectId('69b7abe0ee1b6e231d89b04e'),
+    pname: 'mouse',
+    price: 50
+  }
+]
+ 
+ INVOICE> db.product.find({price:{$gt:50}});
+[
+  {
+    _id: ObjectId('69b7abe0ee1b6e231d89b04b'),
+    pname: 'chair',
+    price: 200
+  }
+]
+
+ 
+ 
+ 3. Write a MongoDB query to find customer documents who not live in ‘tvm’.
+ 
+ INVOICE> db.CUSTOMER.find({city:{$ne:"tvm"}});
+[
+  {
+    _id: ObjectId('69b3de410776115734d861e3'),
+    name: 'sahva',
+    age: 22,
+    city: 'Calicut'
+  },
+
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b048'),
+    name: 'vinu',
+    age: 22,
+    city: 'kottayam',
+
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b049'),
+    name: 'joji',
+    age: 22,
+    city: 'calicut',
+
+  },
+  {
+    _id: ObjectId('69b7ab53ee1b6e231d89b04a'),
+    name: 'vidhu',
+    age: 22,
+    city: 'ekm',
+
+  }
+]
+
