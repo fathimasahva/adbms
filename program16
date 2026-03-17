@@ -1,0 +1,120 @@
+1. Write a MongoDB query to sort customer details in ascending order of their name. 
+
+INVOICE> db.CUSTOMER.find().sort({KEY:1})
+[
+  {
+    _id: ObjectId('69b3de410776115734d861e3'),
+    name: 'sahva',
+    age: 22,
+    city: 'calicut'
+  },
+  {
+    _id: ObjectId('69b8e944abae832cc0d861e1'),
+    name: 'anu',
+    age: 22,
+    city: 'tvm'
+  },
+  {
+    _id: ObjectId('69b8e944abae832cc0d861e2'),
+    name: 'vinu',
+    age: 22,
+    city: 'kottayam'
+  },
+  {
+    _id: ObjectId('69b8e944abae832cc0d861e3'),
+    name: 'joji',
+    age: 22,
+    city: 'calicut'
+  },
+  {
+    _id: ObjectId('69b8e944abae832cc0d861e4'),
+    name: 'vidhu',
+    age: 22,
+    city: 'ekm'
+  }
+]
+
+
+ 2. Write a MongoDB query to count number of customers in each city. 
+
+
+INVOICE> db.CUSTOMER.aggregate([{$group:{_id:"$city",total:{$sum:1}}}])
+[
+  { _id: 'calicut', total: 1 },
+  { _id: 'ekm', total: 1 },
+  { _id: 'kottayam', total: 1 },
+  { _id: 'tvm', total: 1 },
+]
+
+
+ 3. Write a MongoDB query to find minimum and maximum age in each city. 
+
+
+INVOICE> db.CUSTOMER.aggregate([{$group: {_id: "$city",minAge: { $min: "$age" }, maxAge: { $max:"$age" }} }])
+
+[
+  { _id: 'calicut', minAge: 22, maxAge: 26 },
+  { _id: 'tvm', minAge: 24, maxAge: 24 },
+  { _id: 'kottayam', minAge: 21, maxAge: 21 },
+  { _id: 'ekm', minAge: 20, maxAge: 20 }
+]
+
+ 4. Write a MongoDB query using the $match stage to retrieve all customer documents whose
+customer_name starts with the letter “S”.
+
+
+INVOICE> db.CUSTOMER.aggregate([{$match:{name:{$regex:"^s"}}}])
+[
+  {
+    _id: ObjectId('69b3de410776115734d861e3'),
+    name: 'sahva',
+    age: 22,
+    city: 'Calicut'
+  }
+]
+
+5. Write a query using $lookup to join CUSTOMER and PRODUCT collections and display only
+customer name, product name, and price.
+
+INVOICE> db.CUSTOMER.aggregate([
+...   {
+...     $lookup: {
+...       from: "product",
+...       localField: "product_id",
+...       foreignField: "product_id",
+...       as: "purchased_product"
+...     }
+...   },
+...   { $unwind: "$purchased_product" },
+...   {
+...     $project: {
+...       _id: 0,
+...       customer_name: "$name",
+...       product_name: "$purchased_product.pname",
+...       price: "$purchased_product.price"
+...     }
+...   }
+... ])
+[
+  { customer_name: 'sahva', product_name: 'chair', price: 200 },
+  { customer_name: 'sahva', product_name: 'pen', price: 5 },
+  { customer_name: 'sahva', product_name: 'soap', price: 45 },
+  { customer_name: 'sahva', product_name: 'mouse', price: 50 },
+  { customer_name: 'anu', product_name: 'chair', price: 200 },
+  { customer_name: 'anu', product_name: 'pen', price: 5 },
+  { customer_name: 'anu', product_name: 'soap', price: 45 },
+  { customer_name: 'anu', product_name: 'mouse', price: 50 },
+  { customer_name: 'vinu', product_name: 'chair', price: 200 },
+  { customer_name: 'vinu', product_name: 'pen', price: 5 },
+  { customer_name: 'vinu', product_name: 'soap', price: 45 },
+  { customer_name: 'vinu', product_name: 'mouse', price: 50 },
+  { customer_name: 'joji', product_name: 'chair', price: 200 },
+  { customer_name: 'joji', product_name: 'pen', price: 5 },
+  { customer_name: 'joji', product_name: 'soap', price: 45 },
+  { customer_name: 'joji', product_name: 'mouse', price: 50 },
+  { customer_name: 'vidhu', product_name: 'chair', price: 200 },
+  { customer_name: 'vidhu', product_name: 'pen', price: 5 },
+  { customer_name: 'vidhu', product_name: 'soap', price: 45 },
+  { customer_name: 'vidhu', product_name: 'mouse', price: 50 }
+]
+
