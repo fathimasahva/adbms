@@ -1,0 +1,65 @@
+	
+RECORD PROGRAM 17- ADMINISTRATION & SHELL COMMANDS
+
+
+1. Write a MongoDB query to create a user “CUSTOMER1” and grant the read role in the INVOICE database. 
+
+db.createUser({user: "CSTOMER1",pwd: "1234",roles: [{ role: "read", db: "INVOICE" }]})
+
+{ ok: 1 }
+
+ 2. Write a MongoDB query to create the backup for the INVOICE database.
+ 
+ 
+(base) ksb@ksb-OptiPlex-3060:~$ mongodump --db INVOICE --out ~/INVOICE_backup
+2026-03-23T11:28:43.819+0530	writing INVOICE.CUSTOMER to /home/ksb/INVOICE_backup/INVOICE/CUSTOMER.bson
+2026-03-23T11:28:43.820+0530	writing INVOICE.PRODUCT to /home/ksb/INVOICE_backup/INVOICE/PRODUCT.bson
+2026-03-23T11:28:43.952+0530	done dumping INVOICE.CUSTOMER (6 documents)
+2026-03-23T11:28:43.953+0530	done dumping INVOICE.PRODUCT (1 document)
+2026-03-23T11:28:43.970+0530	writing INVOICE.product to /home/ksb/INVOICE_backup/INVOICE/product.bson
+2026-03-23T11:28:43.971+0530	done dumping INVOICE.product (4 documents)
+
+
+
+
+
+ 
+ 3. Write a MongoDB query to restore a particular database or a collection. 
+ 
+
+
+
+(base) ksb@ksb-H410M-H-V2:~$ mongodump --db ksb
+2026-03-23T11:38:10.455+0530	writing ksb.mca to dump/ksb/mca.bson
+2026-03-23T11:38:10.486+0530	done dumping ksb.mca (0 documents)
+2026-03-23T11:38:10.489+0530	writing ksb.customer to dump/ksb/customer.bson
+2026-03-23T11:38:10.490+0530	done dumping ksb.customer (2 documents)
+
+(base) ksb@ksb-H410M-H-V2:~$ mongosh
+
+test> use ksb
+switched to db ksb
+ksb> db.dropDatabase()
+{ ok: 1, dropped: 'ksb' }
+
+(base) ksb@ksb-H410M-H-V2:~$ mongorestore dump/ksb
+2026-03-23T11:40:59.490+0530	The --db and --collection flags are deprecated for this use-case; please use --nsInclude instead, i.e. with --nsInclude=${DATABASE}.${COLLECTION}
+2026-03-23T11:40:59.490+0530	building a list of collections to restore from dump/ksb dir
+2026-03-23T11:40:59.491+0530	don't know what to do with file "dump/ksb/prelude.json", skipping...
+2026-03-23T11:40:59.491+0530	reading metadata for ksb.customer from dump/ksb/customer.metadata.json
+2026-03-23T11:40:59.491+0530	reading metadata for ksb.mca from dump/ksb/mca.metadata.json
+2026-03-23T11:40:59.821+0530	restoring ksb.customer from dump/ksb/customer.bson
+2026-03-23T11:40:59.850+0530	finished restoring ksb.customer (2 documents, 0 failures)
+2026-03-23T11:40:59.910+0530	restoring ksb.mca from dump/ksb/mca.bson
+2026-03-23T11:40:59.921+0530	finished restoring ksb.mca (0 documents, 0 failures)
+2026-03-23T11:40:59.921+0530	no indexes to restore for collection ksb.customer
+2026-03-23T11:40:59.921+0530	no indexes to restore for collection ksb.mca
+2026-03-23T11:40:59.921+0530	2 document(s) restored successfully. 0 document(s) failed to restore.
+
+
+
+ 4. Write a MongoDB query to create an index for the collection customer using the field customer_name.
+
+INVOICE> db.CUSTOMER.createIndex({ customer_name: 1 })
+customer_name_1
+
